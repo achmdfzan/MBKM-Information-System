@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 19, 2022 at 05:11 AM
+-- Generation Time: May 19, 2022 at 06:23 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -44,8 +44,22 @@ CREATE TABLE `kontrakmbkm` (
   `NIM` varchar(10) NOT NULL,
   `ID_PROGRAM` varchar(10) NOT NULL,
   `STATUS` varchar(20) NOT NULL,
-  `ID_KONTRAKMBKM` int(11) NOT NULL
+  `ID_KONTRAKMBKM` int(11) NOT NULL,
+  `NIP_Pembimbing_MBKM` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `kontrakmbkm`
+--
+
+INSERT INTO `kontrakmbkm` (`NIM`, `ID_PROGRAM`, `STATUS`, `ID_KONTRAKMBKM`, `NIP_Pembimbing_MBKM`) VALUES
+('2000199', '11111', 'sedang mendaftar', 1, '11111111'),
+('2003662', '11111', 'sedang mengikuti', 2, '11111111'),
+('2100187', '11111', 'sedang mengikuti', 3, '33333333'),
+('2100192', '22222', 'sedang mendaftar', 4, '33333333'),
+('2100195', '22222', 'selesai', 5, '33333333'),
+('2100846', '22222', 'sedang mendaftar', 6, '33333333'),
+('2100901', '22222', 'selesai', 7, '33333333');
 
 -- --------------------------------------------------------
 
@@ -69,9 +83,46 @@ CREATE TABLE `tmahasiswa` (
 --
 
 INSERT INTO `tmahasiswa` (`NIP`, `NIM`, `NAMA_MAHASISWA`, `PRODI`, `EMAIL_MAHASISWA`, `SEMESTER_MAHASISWA`, `SKS_AKUMULATIF`, `IPK_MAHASISWA`) VALUES
+('11111111', '2000199', 'NELLY JOY CHRISTI SIMANJUNTAK', 'Ilkom', 'dummy@gmail.com', 5, 0, 3.8),
+('11111111', '2003662', 'RIGEL DEVANO HIDAYATULLAH', 'Ilkom', 'dummy@gmail.com', 6, 0, 3.9),
+('11111111', '2100137', 'MUHAMAD NUR YASIN AMADUDIN', 'Ilkom', 'dummy@gmail.com', 5, 0, 3.1),
+('11111111', '2100187', 'MUHAMMAD HILMY RASYAD SOFYAN', 'Ilkom', 'dummy@gmail.com', 5, 0, 3.87),
+('11111111', '2100192', 'MUHAMMAD RAYHAN NUR', 'Ilkom', 'dummy@gmail.com', 5, 0, 3.87),
+('11111111', '2100195', 'DAVIN FAUSTA PUTRA SANJAYA', 'Ilkom', 'dummy@gmail.com', 6, 0, 3.87),
+('11111111', '2100846', 'RAFLY PUTRA SANTOSO', 'Ilkom', 'dummy@gmail.com', 6, 0, 3.87),
+('11111111', '2100901', 'AZZAHRA SITI HADJAR', 'Ilkom', 'dummy@gmail.com', 6, 0, 3.87),
+('11111111', '2100991', 'KHANA YUSDIANA', 'Ilkom', 'dummy@gmail.com', 5, 0, 3.87),
+('11111111', '2101103', 'RIFQI FAJAR INDRAYADI', 'Ilkom', 'dummy@gmail.com', 5, 0, 4),
+('11111111', '2101114', 'ANANDITA KUSUMAH MULYADI', 'Ilkom', 'dummy@gmail.com', 5, 0, 4),
+('11111111', '2101147', 'AMIDA ZULFA LAILA', 'Ilkom', 'dummy@gmail.com', 5, 0, 4),
+('11111111', '2102159', 'VIRZA RAIHAN KURNIAWAN', 'Ilkom', 'dummy@gmail.com', 5, 0, 4),
+('11111111', '2102204', 'MOHAMAD ASYQARI ANUGRAH', 'Ilkom', 'dummy@gmail.com', 5, 0, 4),
+('11111111', '2102268', 'AUDRY LEONARDO LOO', 'Ilkom', 'dummy@gmail.com', 5, 0, 4),
+('11111111', '2102292', 'HAROLD VIDIAN EXAUDI SIMARMATA', 'Ilkom', 'dummy@gmail.com', 5, 0, 4),
+('22222222', '2102313', 'MUHAMMAD KAMAL ROBBANI', 'Ilkom', 'dummy@gmail.com', 5, 0, 3.6),
+('22222222', '2102421', 'KANIA DINDA FASYA', 'Ilkom', 'dummy@gmail.com', 5, 0, 3.6),
+('22222222', '2102545', 'ZAHRA FITRIA MAHARANI', 'Ilkom', 'dummy@gmail.com', 6, 0, 3.6),
 ('22222222', '2102585', 'Apri Anggara Yudha', 'Ilmu Komputer', 'aprianggarayudha585@upi.edu', 5, 0, 4),
+('22222222', '2102665', 'M. CAHYANA BINTANG FAJAR', 'Ilkom', 'dummy@gmail.com', 6, 0, 3.6),
+('22222222', '2102671', 'ANDERFA JALU KAWANI', 'Ilkom', 'dummy@gmail.com', 6, 0, 3.6),
 ('33333333', '2102843', 'Najma Qalbi Dwiharani', 'Ilmu Komputer', 'najmadwiharani@upi.edu', 6, 0, 4),
-('11111111', '2108061', 'Achmad Fauzan', 'Ilmu Komputer', 'achmdfzan@upi.edu', 5, 0, 3.96);
+('22222222', '2103207', 'YASMIN FATHANAH ZAKIYYAH', 'Ilkom', 'dummy@gmail.com', 6, 0, 3.6),
+('22222222', '2103507', 'INDAH RESTI FAUZI', 'Ilkom', 'dummy@gmail.com', 6, 0, 3.6),
+('22222222', '2103703', 'FAUZIYYAH ZAYYAN NUR', 'Ilkom', 'dummy@gmail.com', 6, 0, 3.6),
+('22222222', '2103727', 'CANTIKA PUTRI ARBILIANSYAH', 'Ilkom', 'dummy@gmail.com', 6, 0, 3.6),
+('22222222', '2105673', 'ALGHANIYU NAUFAL HAMID', 'Ilkom', 'dummy@gmail.com', 6, 0, 3.6),
+('22222222', '2105745', 'RIDWAN ALBANA', 'Ilkom', 'dummy@gmail.com', 5, 0, 3.6),
+('22222222', '2105879', 'FARHAN MUZHAFFAR TIRAS PUTRA', 'Ilkom', 'dummy@gmail.com', 5, 0, 3.6),
+('22222222', '2105885', 'QURROTU\' AINII', 'Ilkom', 'dummy@gmail.com', 5, 0, 3.6),
+('22222222', '2105927', 'FEBRY SYAMAN HASAN', 'Ilkom', 'dummy@gmail.com', 5, 0, 3.6),
+('33333333', '2105997', 'MUHAMMAD FAKHRI FADHLURRAHMAN', 'Ilkom', 'dummy@gmail.com', 5, 0, 3.6),
+('33333333', '2106000', 'SABILA ROSAD', 'Ilkom', 'dummy@gmail.com', 5, 0, 3.5),
+('11111111', '2108061', 'Achmad Fauzan', 'Ilmu Komputer', 'achmdfzan@upi.edu', 5, 0, 3.96),
+('33333333', '2108067', 'VILLENEUVE ANDHIRA SUWANDHI', 'Ilkom', 'dummy@gmail.com', 5, 0, 3.5),
+('33333333', '2108077', 'HESTINA DWI HARTIWI', 'Ilkom', 'dummy@gmail.com', 5, 0, 3.5),
+('33333333', '2108804', 'LAELATUSYA\'DIYAH', 'Ilkom', 'dummy@gmail.com', 5, 0, 3.5),
+('33333333', '2108927', 'MUHAMMAD FAHRU ROZI', 'Ilkom', 'dummy@gmail.com', 5, 0, 3.5),
+('33333333', '2108938', 'RAFI ARSALAN MI\'RAJ', 'Ilkom', 'dummy@gmail.com', 5, 0, 3.5);
 
 -- --------------------------------------------------------
 
@@ -157,7 +208,8 @@ ALTER TABLE `kontrakmatkul`
 ALTER TABLE `kontrakmbkm`
   ADD PRIMARY KEY (`ID_KONTRAKMBKM`),
   ADD KEY `FK_KONTRAKM_KONTRAKMB_TMAHASIS` (`NIM`),
-  ADD KEY `FK_KONTRAKM_KONTRAKMB_TPROGRAM` (`ID_PROGRAM`);
+  ADD KEY `FK_KONTRAKM_KONTRAKMB_TPROGRAM` (`ID_PROGRAM`),
+  ADD KEY `NIP_Pembimbing_MBKM` (`NIP_Pembimbing_MBKM`);
 
 --
 -- Indexes for table `tmahasiswa`
@@ -200,7 +252,8 @@ ALTER TABLE `kontrakmatkul`
 --
 ALTER TABLE `kontrakmbkm`
   ADD CONSTRAINT `FK_KONTRAKM_KONTRAKMB_TMAHASIS` FOREIGN KEY (`NIM`) REFERENCES `tmahasiswa` (`NIM`),
-  ADD CONSTRAINT `FK_KONTRAKM_KONTRAKMB_TPROGRAM` FOREIGN KEY (`ID_PROGRAM`) REFERENCES `tprogrammbkm` (`ID_PROGRAM`);
+  ADD CONSTRAINT `FK_KONTRAKM_KONTRAKMB_TPROGRAM` FOREIGN KEY (`ID_PROGRAM`) REFERENCES `tprogrammbkm` (`ID_PROGRAM`),
+  ADD CONSTRAINT `kontrakmbkm_ibfk_1` FOREIGN KEY (`NIP_Pembimbing_MBKM`) REFERENCES `tpembimbing` (`NIP`);
 
 --
 -- Constraints for table `tmahasiswa`
