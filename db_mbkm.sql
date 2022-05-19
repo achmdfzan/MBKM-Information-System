@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 19, 2022 at 06:23 AM
+-- Generation Time: May 19, 2022 at 06:27 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -59,7 +59,19 @@ INSERT INTO `kontrakmbkm` (`NIM`, `ID_PROGRAM`, `STATUS`, `ID_KONTRAKMBKM`, `NIP
 ('2100192', '22222', 'sedang mendaftar', 4, '33333333'),
 ('2100195', '22222', 'selesai', 5, '33333333'),
 ('2100846', '22222', 'sedang mendaftar', 6, '33333333'),
-('2100901', '22222', 'selesai', 7, '33333333');
+('2100901', '22222', 'selesai', 7, '33333333'),
+('2100991', '33333', 'sedang mendaftar', 8, '22222222'),
+('2101103', '33333', 'selesai', 9, '11111111'),
+('2101114', '33333', 'sedang mendaftar', 10, '11111111'),
+('2101147', '33333', 'selesai', 11, '11111111'),
+('2102159', '22222', 'sedang mengikuti', 12, '22222222'),
+('2102204', '22222', 'mengundurkan diri', 13, '22222222'),
+('2102268', '22222', 'sedang mendaftar', 14, '22222222'),
+('2102292', '33333', 'mengundurkan diri', 15, '22222222'),
+('2102313', '33333', 'sedang mengikuti', 16, '11111111'),
+('2102421', '33333', 'sedang mendaftar', 17, '11111111'),
+('2102545', '11111', 'sedang mengikuti', 18, '22222222'),
+('2102665', '11111', 'tidak diterima', 19, '33333333');
 
 -- --------------------------------------------------------
 
