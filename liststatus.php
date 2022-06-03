@@ -130,12 +130,12 @@ if(isset($_GET["stat"]) && !empty(trim($_GET["stat"]))){
                         </div>
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary mb-2">Filter :</h6>
-                            <a href='liststatus.php' class='btn btn-dark btn-act'>tampilkan semua</a>
-                            <a href='liststatus.php?stat=smd' class='btn btn-warning btn-act'>sedang mendaftar</a>
-                            <a href='liststatus.php?stat=mpb' class='btn btn-info btn-act'>menunggu pembimbing</a>
-                            <a href='liststatus.php?stat=smg' class='btn btn-primary btn-act'>sedang mengikuti</a>
-                            <a href='liststatus.php?stat=sls' class='btn btn-success btn-act'>selesai</a>
-                            <a href='liststatus.php?stat=tdt' class='btn btn-danger btn-act'>tidak diterima</a>
+                            <a href='liststatus.php' class='btn btn-dark btn-sm'>tampilkan semua</a>
+                            <a href='liststatus.php?stat=smd' class='btn btn-warning btn-sm'>sedang mendaftar</a>
+                            <a href='liststatus.php?stat=mpb' class='btn btn-info btn-sm'>menunggu pembimbing</a>
+                            <a href='liststatus.php?stat=smg' class='btn btn-primary btn-sm'>sedang mengikuti</a>
+                            <a href='liststatus.php?stat=sls' class='btn btn-success btn-sm'>selesai</a>
+                            <a href='liststatus.php?stat=tdt' class='btn btn-danger btn-sm'>tidak diterima</a>
                         </div>
                         <div class="card-body">
                         <?php
@@ -170,7 +170,12 @@ if(isset($_GET["stat"]) && !empty(trim($_GET["stat"]))){
                                                 echo "<td>" . $row['nama_pembimbing'] . "</td>";
                                                 echo "<td>" . $row['waktu_mulai'] . "</td>";
                                                 echo "<td>" . $row['waktu_selesai'] . "</td>";
-                                                echo "<td>" . $row['status'] . "</td>";
+                                                if ($row['status'] == 'sedang mendaftar') $tipe = 'warning';
+                                                else if ($row['status'] == 'menunggu pembimbing') $tipe = 'info';
+                                                else if ($row['status'] == 'sedang mengikuti') $tipe = 'primary';
+                                                else if ($row['status'] == 'selesai') $tipe = 'success';
+                                                else $tipe = 'danger';
+                                                echo "<td><span class='badge badge-". $tipe ."'>" . $row['status'] . "</span></td>";
                                             echo "</tr>";
                                         }
                                         echo "</tbody>";                            

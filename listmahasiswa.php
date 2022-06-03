@@ -119,10 +119,12 @@
                                                 echo "<th>Semester</th>";
                                                 echo "<th>Sisa SKS Dalam Universitas</th>";
                                                 echo "<th>Sisa SKS Luar Universitas</th>";
+                                                echo "<th>Status</th>";
                                             echo "</tr>";
                                         echo "</thead>";
                                         echo "<tbody>";
                                         $num = 1;
+                                        $tipe = '';
                                         while($row = mysqli_fetch_array($result)){
                                             echo "<tr>";
                                                 echo "<td>" . $num++ . "</td>";
@@ -132,6 +134,9 @@
                                                 echo "<td>" . $row['semester_mahasiswa'] . "</td>";
                                                 echo "<td>" . $row['sks_dalam_univ'] . "</td>";
                                                 echo "<td>" . $row['sks_luar_univ'] . "</td>";
+                                                if ($row['status_mahasiswa'] == 'belum berpartisipasi') $tipe = 'danger';
+                                                else $tipe = 'success';
+                                                echo "<td><span class = 'badge badge-". $tipe ."'>" . $row['status_mahasiswa'] . "</span></td>";
                                             echo "</tr>";
                                         }
                                         echo "</tbody>";                            

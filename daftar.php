@@ -122,6 +122,7 @@ if(isset($_GET["id"]) && !empty(trim($_GET["id"]))){
                                         echo "</thead>";
                                         echo "<tbody>";
                                         $num = 1;
+                                        $tipe = "";
                                         while($row = mysqli_fetch_array($result)){
                                             echo "<tr>";
                                                 echo "<td>" . $num++ . "</td>";
@@ -130,7 +131,9 @@ if(isset($_GET["id"]) && !empty(trim($_GET["id"]))){
                                                 echo "<td>" . $row['jenis_program'] . "</td>";
                                                 echo "<td>" . $row['durasi'] . " bulan</td>";
                                                 echo "<td>" . $row['sks_program'] . "</td>";
-                                                echo "<td><button type='button' class='btn btn-". ($row["lingkup_program"] == "dalam" ? "danger" : "success") ."'>" . $row['lingkup_program'] . " universitas</button></td>";
+                                                if ($row['lingkup_program'] == 'dalam') $tipe = 'danger';
+                                                else $tipe = 'success';
+                                                echo "<td><span class='badge badge-". $tipe ."'>" . $row['lingkup_program'] . " universitas</button></td>";
                                                 echo "<td><a href='prosesdaftar.php?id=". $row["id_program"] ."' class='btn btn-primary btn-act'>Daftar</a></td>";
                                             echo "</tr>";
                                         }

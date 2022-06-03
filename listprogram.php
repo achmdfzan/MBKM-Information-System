@@ -123,6 +123,7 @@
                                         echo "</thead>";
                                         echo "<tbody>";
                                         $num = 1;
+                                        $tipe = "";
                                         while($row = mysqli_fetch_array($result)){
                                             echo "<tr>";
                                                 echo "<td>" . $num++ . "</td>";
@@ -131,7 +132,9 @@
                                                 echo "<td>" . $row['jenis_program'] . "</td>";
                                                 echo "<td>" . $row['durasi'] . "</td>";
                                                 echo "<td>" . $row['sks_program'] . "</td>";
-                                                echo "<td>" . $row['lingkup_program'] . " universitas</td>";
+                                                if ($row['lingkup_program'] == 'dalam') $tipe = 'danger';
+                                                else $tipe = 'success';
+                                                echo "<td><span class='badge badge-". $tipe ."'>" . $row['lingkup_program'] . " universitas</button></td>";
                                             echo "</tr>";
                                         }
                                         echo "</tbody>";                            
