@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 02, 2022 at 06:06 AM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 8.1.2
+-- Generation Time: Jun 03, 2022 at 09:38 AM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `db_mbkm`
+-- Database: `db_sbd`
 --
 
 -- --------------------------------------------------------
@@ -34,19 +34,6 @@ CREATE TABLE `kontrakmatkul` (
   `id_kontrakmatkul` int(11) NOT NULL,
   `sem_kontrak` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `kontrakmatkul`
---
-
-INSERT INTO `kontrakmatkul` (`kode_mk`, `nim`, `tipe`, `id_kontrakmatkul`, `sem_kontrak`) VALUES
-('IK330', '2100901', 'konversi', 16, 6),
-('IK310', '2102843', 'konversi', 17, 6),
-('IK330', '2102843', 'konversi', 18, 6),
-('IK310', '2102843', 'konversi', 19, 6),
-('IK310', '2102843', 'konversi', 20, 6),
-('IK310', '2102843', 'konversi', 21, 6),
-('IK330', '2102843', 'konversi', 22, 6);
 
 --
 -- Triggers `kontrakmatkul`
@@ -79,20 +66,11 @@ CREATE TABLE `kontrakmbkm` (
   `id_program` varchar(10) NOT NULL,
   `status` varchar(20) NOT NULL,
   `id_kontrakmbkm` int(11) NOT NULL,
-  `nip_pembimbingmbkm` varchar(20) DEFAULT NULL,
+  `nip_pembimbingmbkm` varchar(20) DEFAULT '00000',
   `semester_kontrak` int(11) NOT NULL,
   `waktu_mulai` date DEFAULT NULL,
   `waktu_selesai` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `kontrakmbkm`
---
-
-INSERT INTO `kontrakmbkm` (`nim`, `id_program`, `status`, `id_kontrakmbkm`, `nip_pembimbingmbkm`, `semester_kontrak`, `waktu_mulai`, `waktu_selesai`) VALUES
-('2100901', '33333', 'selesai', 9, '11111111', 6, '2022-06-02', '2022-06-02'),
-('2108061', '22222', 'sedang mendaftar', 10, NULL, 5, NULL, NULL),
-('2102843', '33333', 'selesai', 11, '22222222', 6, '2022-06-02', '2022-06-02');
 
 --
 -- Triggers `kontrakmbkm`
@@ -130,7 +108,6 @@ CREATE TRIGGER `before_selesai_update` BEFORE UPDATE ON `kontrakmbkm` FOR EACH R
         END IF;
 
         UPDATE tmahasiswa AS tm SET sks_akumulatif=sks_akumulatif+sks WHERE new.nim=tm.nim;
-        
     END IF;
     
 END
@@ -150,7 +127,6 @@ CREATE TABLE `tmahasiswa` (
   `prodi` varchar(50) NOT NULL,
   `email_mahasiswa` varchar(50) NOT NULL,
   `semester_mahasiswa` int(11) NOT NULL,
-  `sks_akumulatif` int(11) DEFAULT 0,
   `sks_sisa_konversi` int(11) DEFAULT 0,
   `sks_dalam_univ` int(11) DEFAULT 20,
   `sks_luar_univ` int(11) DEFAULT 40,
@@ -162,48 +138,46 @@ CREATE TABLE `tmahasiswa` (
 -- Dumping data for table `tmahasiswa`
 --
 
-INSERT INTO `tmahasiswa` (`nip`, `nim`, `nama_mahasiswa`, `prodi`, `email_mahasiswa`, `semester_mahasiswa`, `sks_akumulatif`, `sks_sisa_konversi`, `sks_dalam_univ`, `sks_luar_univ`, `ipk_mahasiswa`, `status_mahasiswa`) VALUES
-('11111111', '2000199', 'NELLY JOY CHRISTI SIMANJUNTAK', 'Ilkom', 'dummy@gmail.com', 5, 0, 0, 20, 40, 3.8, 'belum berpartisipasi'),
-('11111111', '2003662', 'RIGEL DEVANO HIDAYATULLAH', 'Ilkom', 'dummy@gmail.com', 6, 0, 0, 20, 40, 3.9, 'belum berpartisipasi'),
-('11111111', '2100137', 'MUHAMAD NUR YASIN AMADUDIN', 'Ilkom', 'dummy@gmail.com', 5, 0, 0, 20, 40, 3.1, 'belum berpartisipasi'),
-('11111111', '2100187', 'MUHAMMAD HILMY RASYAD SOFYAN', 'Ilkom', 'dummy@gmail.com', 5, 0, 0, 20, 40, 3.87, 'belum berpartisipasi'),
-('11111111', '2100192', 'MUHAMMAD RAYHAN NUR', 'Ilkom', 'dummy@gmail.com', 5, 0, 0, 20, 40, 3.87, 'belum berpartisipasi'),
-('11111111', '2100195', 'DAVIN FAUSTA PUTRA SANJAYA', 'Ilkom', 'dummy@gmail.com', 6, 0, 0, 20, 40, 3.87, 'belum berpartisipasi'),
-('11111111', '2100846', 'RAFLY PUTRA SANTOSO', 'Ilkom', 'dummy@gmail.com', 6, 0, 0, 20, 40, 3.87, 'belum berpartisipasi'),
-('11111111', '2100901', 'AZZAHRA SITI HADJAR', 'Ilkom', 'dummy@gmail.com', 6, 20, 17, 0, 40, 3.87, 'sudah berpartisipasi'),
-('11111111', '2100991', 'KHANA YUSDIANA', 'Ilkom', 'dummy@gmail.com', 5, 0, 0, 20, 40, 3.87, 'belum berpartisipasi'),
-('11111111', '2101103', 'RIFQI FAJAR INDRAYADI', 'Ilkom', 'dummy@gmail.com', 5, 0, 0, 20, 40, 4, 'belum berpartisipasi'),
-('11111111', '2101114', 'ANANDITA KUSUMAH MULYADI', 'Ilkom', 'dummy@gmail.com', 5, 0, 0, 20, 40, 4, 'belum berpartisipasi'),
-('11111111', '2101147', 'AMIDA ZULFA LAILA', 'Ilkom', 'dummy@gmail.com', 5, 0, 0, 20, 40, 4, 'belum berpartisipasi'),
-('11111111', '2102159', 'VIRZA RAIHAN KURNIAWAN', 'Ilkom', 'dummy@gmail.com', 5, 0, 0, 20, 40, 4, 'belum berpartisipasi'),
-('11111111', '2102204', 'MOHAMAD ASYQARI ANUGRAH', 'Ilkom', 'dummy@gmail.com', 5, 0, 0, 20, 40, 4, 'belum berpartisipasi'),
-('11111111', '2102268', 'AUDRY LEONARDO LOO', 'Ilkom', 'dummy@gmail.com', 5, 0, 0, 20, 40, 4, 'belum berpartisipasi'),
-('11111111', '2102292', 'HAROLD VIDIAN EXAUDI SIMARMATA', 'Ilkom', 'dummy@gmail.com', 5, 0, 0, 20, 40, 4, 'belum berpartisipasi'),
-('22222222', '2102313', 'MUHAMMAD KAMAL ROBBANI', 'Ilkom', 'dummy@gmail.com', 5, 0, 0, 20, 40, 3.6, 'belum berpartisipasi'),
-('22222222', '2102421', 'KANIA DINDA FASYA', 'Ilkom', 'dummy@gmail.com', 5, 0, 0, 20, 40, 3.6, 'belum berpartisipasi'),
-('22222222', '2102545', 'ZAHRA FITRIA MAHARANI', 'Ilkom', 'dummy@gmail.com', 6, 0, 0, 20, 40, 3.6, 'belum berpartisipasi'),
-('22222222', '2102585', 'APRI ANGGARA YUDHA', 'Ilmu Komputer', 'aprianggarayudha585@upi.edu', 5, 0, 0, 20, 40, 4, 'belum berpartisipasi'),
-('22222222', '2102665', 'M. CAHYANA BINTANG FAJAR', 'Ilkom', 'dummy@gmail.com', 6, 0, 0, 20, 40, 3.6, 'belum berpartisipasi'),
-('22222222', '2102671', 'ANDERFA JALU KAWANI', 'Ilkom', 'dummy@gmail.com', 6, 0, 0, 20, 40, 3.6, 'belum berpartisipasi'),
-('33333333', '2102843', 'NAJMA QALBI DWIHARANI', 'Ilmu Komputer', 'najmadwiharani@upi.edu', 6, 20, 2, 0, 40, 4, 'sudah berpartisipasi'),
-('22222222', '2103207', 'YASMIN FATHANAH ZAKIYYAH', 'Ilkom', 'dummy@gmail.com', 6, 0, 0, 20, 40, 3.6, 'belum berpartisipasi'),
-('22222222', '2103507', 'INDAH RESTI FAUZI', 'Ilkom', 'dummy@gmail.com', 6, 0, 0, 20, 40, 3.6, 'belum berpartisipasi'),
-('22222222', '2103703', 'FAUZIYYAH ZAYYAN NUR', 'Ilkom', 'dummy@gmail.com', 6, 0, 0, 20, 40, 3.6, 'belum berpartisipasi'),
-('22222222', '2103727', 'CANTIKA PUTRI ARBILIANSYAH', 'Ilkom', 'dummy@gmail.com', 6, 0, 0, 20, 40, 3.6, 'belum berpartisipasi'),
-('22222222', '2105673', 'ALGHANIYU NAUFAL HAMID', 'Ilkom', 'dummy@gmail.com', 6, 0, 0, 20, 40, 3.6, 'belum berpartisipasi'),
-('22222222', '2105745', 'RIDWAN ALBANA', 'Ilkom', 'dummy@gmail.com', 5, 0, 0, 20, 40, 3.6, 'belum berpartisipasi'),
-('22222222', '2105879', 'FARHAN MUZHAFFAR TIRAS PUTRA', 'Ilkom', 'dummy@gmail.com', 5, 0, 0, 20, 40, 3.6, 'belum berpartisipasi'),
-('22222222', '2105885', 'QURROTU\' AINII', 'Ilkom', 'dummy@gmail.com', 5, 0, 0, 20, 40, 3.6, 'belum berpartisipasi'),
-('22222222', '2105927', 'FEBRY SYAMAN HASAN', 'Ilkom', 'dummy@gmail.com', 5, 0, 0, 20, 40, 3.6, 'belum berpartisipasi'),
-('33333333', '2105997', 'MUHAMMAD FAKHRI FADHLURRAHMAN', 'Ilkom', 'dummy@gmail.com', 5, 0, 0, 20, 40, 3.6, 'belum berpartisipasi'),
-('33333333', '2106000', 'SABILA ROSAD', 'Ilkom', 'dummy@gmail.com', 5, 0, 0, 20, 40, 3.5, 'belum berpartisipasi'),
-('11111111', '2108061', 'ACHMAD FAUZAN', 'Ilmu Komputer', 'achmdfzan@upi.edu', 5, 0, 0, 20, 40, 3.96, 'sudah berpartisipasi'),
-('33333333', '2108067', 'VILLENEUVE ANDHIRA SUWANDHI', 'Ilkom', 'dummy@gmail.com', 5, 0, 0, 20, 40, 3.5, 'belum berpartisipasi'),
-('33333333', '2108077', 'HESTINA DWI HARTIWI', 'Ilkom', 'dummy@gmail.com', 5, 0, 0, 20, 40, 3.5, 'belum berpartisipasi'),
-('33333333', '2108804', 'LAELATUSYA\'DIYAH', 'Ilkom', 'dummy@gmail.com', 5, 0, 0, 20, 40, 3.5, 'belum berpartisipasi'),
-('33333333', '2108927', 'MUHAMMAD FAHRU ROZI', 'Ilkom', 'dummy@gmail.com', 5, 0, 0, 20, 40, 3.5, 'belum berpartisipasi'),
-('33333333', '2108938', 'RAFI ARSALAN MI\'RAJ', 'Ilkom', 'dummy@gmail.com', 5, 0, 0, 20, 40, 3.5, 'belum berpartisipasi'),
-('11111111', '2201234', 'Mahasiswa Baru', 'Ilkom', 'dummy@gmail.com', 4, 0, 0, 20, 40, 4, 'belum berpartisipasi');
+INSERT INTO `tmahasiswa` (`nip`, `nim`, `nama_mahasiswa`, `prodi`, `email_mahasiswa`, `semester_mahasiswa`, `sks_sisa_konversi`, `sks_dalam_univ`, `sks_luar_univ`, `ipk_mahasiswa`, `status_mahasiswa`) VALUES
+('11111', '2100137', 'Muhamad Nur Yasin Amadudin', 'Ilkom', 'dummy@gmail.com', 5, 0, 20, 40, 4, 'belum berpartisipasi'),
+('22222', '2100187', 'Muhammad Hilmy Rasyad Sofyan', 'Ilkom', 'dummy@gmail.com', 6, 0, 20, 40, 3.7, 'belum berpartisipasi'),
+('99999', '2100192', 'Muhammad Rayhan Nur', 'Ilkom', 'dummy@gmail.com', 6, 0, 20, 40, 3.9, 'belum berpartisipasi'),
+('99999', '2100195', 'Davin Fausta Putra Sanjaya', 'Ilkom', 'dummy@gmail.com', 5, 0, 20, 40, 3.5, 'belum berpartisipasi'),
+('99999', '2100846', 'Rafly Putra Santoso', 'Ilkom', 'dummy@gmail.com', 6, 0, 20, 40, 4, 'belum berpartisipasi'),
+('66666', '2100901', 'Azzahra Siti Hadjar', 'Ilkom', 'dummy@gmail.com', 5, 0, 20, 40, 3.8, 'belum berpartisipasi'),
+('11111', '2100991', 'Khana Yusdiana', 'Ilkom', 'dummy@gmail.com', 5, 0, 20, 40, 4, 'belum berpartisipasi'),
+('22222', '2101103', 'Rifqi Fajar Indrayadi', 'Ilkom', 'dummy@gmail.com', 5, 0, 20, 40, 3.9, 'belum berpartisipasi'),
+('66666', '2101114', 'Anandita Kusumah Mulyadi', 'Ilkom', 'dummy@gmail.com', 6, 0, 20, 40, 3.9, 'belum berpartisipasi'),
+('66666', '2101147', 'Amida Zulfa Laila', 'Ilkom', 'dummy@gmail.com', 6, 0, 20, 40, 3.8, 'belum berpartisipasi'),
+('66666', '2102159', 'Virza Raihan Kurniawan', 'Ilkom', 'dummy@gmail.com', 6, 0, 20, 40, 4, 'belum berpartisipasi'),
+('22222', '2102204', 'Mohamad Asyqari Anugrah', 'Ilkom', 'dummy@gmail.com', 5, 0, 20, 40, 3.9, 'belum berpartisipasi'),
+('66666', '2102268', 'Audry Leonardo Loo', 'Ilkom', 'dummy@gmail.com', 5, 0, 20, 40, 3.8, 'belum berpartisipasi'),
+('66666', '2102292', 'Harold Vidian Exaudi Simarmata', 'Ilkom', 'dummy@gmail.com', 5, 0, 20, 40, 4, 'belum berpartisipasi'),
+('66666', '2102313', 'Muhammad Kamal Robbani', 'Ilkom', 'dummy@gmail.com', 5, 0, 20, 40, 4, 'belum berpartisipasi'),
+('77777', '2102421', 'Kania Dinda Fasya', 'Ilkom', 'dummy@gmail.com', 5, 0, 20, 40, 3.8, 'belum berpartisipasi'),
+('77777', '2102545', 'Zahra Fitria Maharani', 'Ilkom', 'dummy@gmail.com', 5, 0, 20, 40, 3.9, 'belum berpartisipasi'),
+('11111', '2102585', 'Apri Anggara Yudha', 'Ilkom', 'dummy@gmail.com', 5, 0, 20, 40, 3.8, 'belum berpartisipasi'),
+('22222', '2102665', 'M. Cahyana Bintang Fajar', 'Ilkom', 'dummy@gmail.com', 3, 0, 20, 40, 3.8, 'belum berpartisipasi'),
+('11111', '2102671', 'Anderfa Jalu Kawani', 'Ilkom', 'dummy@gmail.com', 3, 0, 20, 40, 4, 'belum berpartisipasi'),
+('22222', '2102690', '\'Aafiyah Kaltsum', 'Ilkom', 'dummy@gmail.com', 3, 0, 20, 40, 4, 'belum berpartisipasi'),
+('77777', '2102843', 'Najma Qalbi Dwiharani', 'Ilkom', 'dummy@gmail.com', 5, 0, 20, 40, 4, 'belum berpartisipasi'),
+('77777', '2103207', 'Yasmin Fathanah Zakiyyah', 'Ilkom', 'dummy@gmail.com', 6, 0, 20, 40, 3.9, 'belum berpartisipasi'),
+('11111', '2103507', 'Indah Resti Fauzi', 'Ilkom', 'dummy@gmail.com', 5, 0, 20, 40, 3.8, 'belum berpartisipasi'),
+('77777', '2103703', 'Fauziyyah Zayyan Nur', 'Ilkom', 'dummy@gmail.com', 6, 0, 20, 40, 4, 'belum berpartisipasi'),
+('77777', '2103727', 'Cantika Putri Arbiliansyah', 'Ilkom', 'dummy@gmail.com', 3, 0, 20, 40, 3.8, 'belum berpartisipasi'),
+('11111', '2105673', 'Alghaniyu Naufal Hamid', 'Ilkom', 'dummy@gmail.com', 6, 0, 20, 40, 3.8, 'belum berpartisipasi'),
+('99999', '2105745', 'Ridwan Albana', 'Ilkom', 'dummy@gmail.com', 6, 0, 20, 40, 4, 'belum berpartisipasi'),
+('77777', '2105879', 'Farhan Muzhaffar Tiras Putra', 'Ilkom', 'dummy@gmail.com', 3, 0, 20, 40, 3.9, 'belum berpartisipasi'),
+('11111', '2105885', 'Qurrotu\' Ainii', 'Ilkom', 'dummy@gmail.com', 6, 0, 20, 40, 3.8, 'belum berpartisipasi'),
+('99999', '2105927', 'Febry Syaman Hasan', 'Ilkom', 'dummy@gmail.com', 4, 0, 20, 40, 4, 'belum berpartisipasi'),
+('77777', '2105997', 'Muhammad Fakhri Fadhlurrahman', 'Ilkom', 'dummy@gmail.com', 5, 0, 20, 40, 3.9, 'belum berpartisipasi'),
+('77777', '2106000', 'Sabila Rosad', 'Ilkom', 'dummy@gmail.com', 4, 0, 20, 40, 4, 'belum berpartisipasi'),
+('11111', '2108061', 'Achmad Fauzan', 'Ilkom', 'dummy@gmail.com', 4, 0, 20, 40, 4, 'belum berpartisipasi'),
+('99999', '2108067', 'Villeneuve Andhira Suwandhi', 'Ilkom', 'dummy@gmail.com', 5, 0, 20, 40, 4, 'belum berpartisipasi'),
+('66666', '2108077', 'Hestina Dwi Hartiwi', 'Ilkom', 'dummy@gmail.com', 5, 0, 20, 40, 3.8, 'belum berpartisipasi'),
+('11111', '2108804', 'Laelatusya\'Diyah', 'Ilkom', 'dummy@gmail.com', 5, 0, 20, 40, 4, 'belum berpartisipasi'),
+('66666', '2108927', 'Muhammad Fahru Rozi', 'Ilkom', 'dummy@gmail.com', 5, 0, 20, 40, 3.9, 'belum berpartisipasi'),
+('22222', '2108938', 'Rafi Arsalan Mi\'Raj', 'Ilkom', 'dummy@gmail.com', 5, 0, 20, 40, 4, 'belum berpartisipasi');
 
 -- --------------------------------------------------------
 
@@ -223,9 +197,38 @@ CREATE TABLE `tmatkul` (
 --
 
 INSERT INTO `tmatkul` (`kode_mk`, `nama_mk`, `sks_mk`, `semester_mk`) VALUES
-('IK310', 'Kriptografi', 3, 5),
-('IK320', 'Kecerdasan Buatan', 5, 3),
-('IK330', 'Algoritma dan Pemrograman 5', 3, 5);
+('IK100', 'Algoritma dan Pemrograman 1', 3, 1),
+('IK110', 'Kalkulus', 3, 1),
+('IK120', 'Paradigma Pemrograman', 2, 5),
+('IK130', 'Logika Informatika', 3, 1),
+('IK150', 'Statistika', 2, 5),
+('IK160', 'Algoritma dan Pemrograman 2', 3, 2),
+('IK170', 'Sistem Basis Data', 3, 2),
+('IK180', 'Aljabar Linier dan Matriks', 2, 6),
+('IK190', 'Etika Profesi Teknologi Informasi dan Komunikasi', 2, 6),
+('IK207', 'Jaringan Komputer', 3, 3),
+('IK210', 'Metode Numerik', 2, 7),
+('IK217', 'Sistem Informasi', 3, 3),
+('IK220', 'Sistem Kontrol', 3, 2),
+('IK227', 'Teknik Riset Operasi', 2, 6),
+('IK230', 'Design dan Pemrograman Web', 3, 2),
+('IK237', 'Analisis dan Desain Algoritma', 3, 4),
+('IK240', 'Struktur Data', 3, 3),
+('IK250', 'Sistem Operasi', 3, 4),
+('IK260', 'Teori Bahasa dan Automata', 3, 1),
+('IK270', 'Rekayasa Perangkat Lunak', 3, 2),
+('IK280', 'Kecerdasan Buatan', 3, 3),
+('IK290', 'Desain dan Pemrograman Berorientasi Objek', 3, 4),
+('IK300', 'Pemrograman Visual dan Piranti Bergerak', 3, 4),
+('IK310', 'Kriptografi', 2, 2),
+('IK320', 'Grafika Komputer dan Multimedia', 3, 3),
+('IK360', 'Kapita Selekta', 2, 7),
+('IK400', 'Metodologi Penelitian', 3, 4),
+('IK410', 'Kewirausahaan Ilmu Komputer', 2, 7),
+('IK430', 'E-Business', 2, 5),
+('IK500', 'Machine Learning', 3, 3),
+('IK505', 'Data Mining and Warehouse', 3, 3),
+('IK545', 'Big Data Platforms', 2, 4);
 
 -- --------------------------------------------------------
 
@@ -244,9 +247,16 @@ CREATE TABLE `tpembimbing` (
 --
 
 INSERT INTO `tpembimbing` (`nip`, `nama_pembimbing`, `email_pembimbing`) VALUES
-('11111111', 'Dr. Rani Megasari, M.T.', 'megasari.upi.edu'),
-('22222222', 'Rosa Ariani Sukamto,  M.T.', 'rosa.ariani@upi.edu'),
-('33333333', 'Dr. Asep Wahyudin, M.T.', 'away@upi.edu');
+('00000', 'Belum Ada', 'dummy@gmail.com'),
+('11111', 'Ani Anisyah, S.Pd., M.T.', 'dummy@gmail.com'),
+('22222', 'Dr. Asep Wahyudin, M.T.', 'dummy@gmail.com'),
+('33333', 'Herbert Siregar, M.T.', 'dummy@gmail.com'),
+('44444', 'Dr. Muhammad Nursalman, M.T.', 'dummy@gmail.com'),
+('55555', 'Dr. Rani Megasari, M.T.', 'dummy@gmail.com'),
+('66666', 'Rasim, M.T.', 'dummy@gmail.com'),
+('77777', 'Rosa Ariani Sukamto, M.T.', 'dummy@gmail.com'),
+('88888', 'Yudi Ahmad Hambali, MT', 'dummy@gmail.com'),
+('99999', 'Dr. Yudi Wibisono, M.T.', 'dummy@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -268,9 +278,17 @@ CREATE TABLE `tprogrammbkm` (
 --
 
 INSERT INTO `tprogrammbkm` (`id_program`, `nama_program`, `jenis_program`, `durasi`, `sks_program`, `lingkup_program`) VALUES
-('11111', 'Magang di Google', 'Magang', 6, 20, 'luar'),
-('22222', 'KKN di desa Konoha', 'KKN', 6, 20, 'luar'),
-('33333', 'Pertukaran Mahasiswa ke Harvard', 'Pertukaran Mahasiswa', 6, 20, 'dalam');
+('100', 'Pertukaran Mahasiswa Luar Prodi', 'Pertukaran Mahasiswa', 6, 20, 'dalam'),
+('101', 'Pertukaran Mahasiswa Luar Universitas', 'Pertukaran Mahasiswa', 6, 20, 'luar'),
+('102', 'Bangkit', 'Bangkit', 5, 20, 'luar'),
+('103', 'Kampus Mengajar', 'Kampus Mengajar', 6, 20, 'luar'),
+('104', 'Magang Di Perusahaan', 'Magang', 5, 20, 'luar'),
+('105', 'Kegiatan Wirausaha', 'Kegiatan Wirausaha', 6, 20, 'luar'),
+('106', 'PKM Peringkat Nasional', 'PKM', 0, 3, 'luar'),
+('107', 'PKM Peringkat Universitas', 'PKM', 0, 2, 'luar'),
+('108', 'PKM Peringkat Fakultas', 'PKM', 0, 1, 'luar'),
+('110', 'Penelitian', 'Penelitian', 6, 20, 'luar'),
+('111', 'Studi Independen', 'Studi Independen', 6, 20, 'luar');
 
 --
 -- Indexes for dumped tables
@@ -326,7 +344,7 @@ ALTER TABLE `tprogrammbkm`
 -- AUTO_INCREMENT for table `kontrakmatkul`
 --
 ALTER TABLE `kontrakmatkul`
-  MODIFY `id_kontrakmatkul` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id_kontrakmatkul` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `kontrakmbkm`
@@ -342,22 +360,22 @@ ALTER TABLE `kontrakmbkm`
 -- Constraints for table `kontrakmatkul`
 --
 ALTER TABLE `kontrakmatkul`
-  ADD CONSTRAINT `FK_KONTRAKM_KONTRAKMA_TMAHASIS` FOREIGN KEY (`NIM`) REFERENCES `tmahasiswa` (`NIM`),
-  ADD CONSTRAINT `FK_KONTRAKM_KONTRAKMA_TMATKUL` FOREIGN KEY (`KODE_MK`) REFERENCES `tmatkul` (`KODE_MK`);
+  ADD CONSTRAINT `FK_KONTRAKM_KONTRAKMA_TMAHASIS` FOREIGN KEY (`nim`) REFERENCES `tmahasiswa` (`nim`),
+  ADD CONSTRAINT `FK_KONTRAKM_KONTRAKMA_TMATKUL` FOREIGN KEY (`kode_mk`) REFERENCES `tmatkul` (`kode_mk`);
 
 --
 -- Constraints for table `kontrakmbkm`
 --
 ALTER TABLE `kontrakmbkm`
-  ADD CONSTRAINT `FK_KONTRAKM_KONTRAKMB_TMAHASIS` FOREIGN KEY (`nim`) REFERENCES `tmahasiswa` (`NIM`),
-  ADD CONSTRAINT `FK_KONTRAKM_KONTRAKMB_TPROGRAM` FOREIGN KEY (`id_program`) REFERENCES `tprogrammbkm` (`ID_PROGRAM`),
-  ADD CONSTRAINT `kontrakmbkm_ibfk_1` FOREIGN KEY (`nip_pembimbingmbkm`) REFERENCES `tpembimbing` (`NIP`);
+  ADD CONSTRAINT `FK_KONTRAKM_KONTRAKMB_TMAHASIS` FOREIGN KEY (`nim`) REFERENCES `tmahasiswa` (`nim`),
+  ADD CONSTRAINT `FK_KONTRAKM_KONTRAKMB_TPROGRAM` FOREIGN KEY (`id_program`) REFERENCES `tprogrammbkm` (`id_program`),
+  ADD CONSTRAINT `kontrakmbkm_ibfk_1` FOREIGN KEY (`nip_pembimbingmbkm`) REFERENCES `tpembimbing` (`nip`);
 
 --
 -- Constraints for table `tmahasiswa`
 --
 ALTER TABLE `tmahasiswa`
-  ADD CONSTRAINT `FK_TMAHASIS_MEMBIMBIN_TPEMBIMB` FOREIGN KEY (`NIP`) REFERENCES `tpembimbing` (`NIP`);
+  ADD CONSTRAINT `FK_TMAHASIS_MEMBIMBIN_TPEMBIMB` FOREIGN KEY (`nip`) REFERENCES `tpembimbing` (`nip`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
