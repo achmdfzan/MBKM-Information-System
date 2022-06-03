@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 03, 2022 at 11:13 AM
+-- Generation Time: Jun 03, 2022 at 03:02 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -42,7 +42,9 @@ CREATE TABLE `kontrakmatkul` (
 INSERT INTO `kontrakmatkul` (`kode_mk`, `nim`, `tipe`, `id_kontrakmatkul`, `sem_kontrak`) VALUES
 ('IK120', '2100137', 'konversi', 19, 5),
 ('IK150', '2100137', 'konversi', 20, 5),
-('IK180', '2100137', 'konversi', 21, 5);
+('IK180', '2100137', 'konversi', 21, 5),
+('IK430', '2100187', 'konversi', 22, 6),
+('IK210', '2100901', 'konversi', 23, 5);
 
 --
 -- Triggers `kontrakmatkul`
@@ -87,7 +89,12 @@ CREATE TABLE `kontrakmbkm` (
 
 INSERT INTO `kontrakmbkm` (`nim`, `id_program`, `status`, `id_kontrakmbkm`, `nip_pembimbingmbkm`, `semester_kontrak`, `waktu_mulai`, `waktu_selesai`) VALUES
 ('2108067', '103', 'sedang mengikuti', 12, '33333', 5, '2022-06-03', NULL),
-('2100137', '110', 'selesai', 13, '44444', 5, '2022-06-03', '2022-06-03');
+('2100137', '110', 'selesai', 13, '44444', 5, '2022-06-03', '2022-06-03'),
+('2101114', '105', 'selesai', 14, '55555', 6, '2022-06-03', '2022-06-03'),
+('2100187', '111', 'selesai', 15, '66666', 6, '2022-06-03', '2022-06-03'),
+('2100901', '107', 'selesai', 16, '11111', 5, '2022-06-03', '2022-06-03'),
+('2100991', '104', 'selesai', 17, '77777', 5, '2022-06-03', '2022-06-03'),
+('2103507', '103', 'sedang mendaftar', 18, '00000', 5, NULL, NULL);
 
 --
 -- Triggers `kontrakmbkm`
@@ -156,45 +163,45 @@ CREATE TABLE `tmahasiswa` (
 --
 
 INSERT INTO `tmahasiswa` (`nip`, `nim`, `nama_mahasiswa`, `prodi`, `email_mahasiswa`, `semester_mahasiswa`, `sks_akumulatif`, `sks_sisa_konversi`, `sks_dalam_univ`, `sks_luar_univ`, `ipk_mahasiswa`, `status_mahasiswa`) VALUES
-('11111', '2100137', 'Muhamad Nur Yasin Amadudin', 'Ilkom', 'dummy@gmail.com', 5, 20, 14, 20, 20, 4, 'sudah berpartisipasi'),
-('22222', '2100187', 'Muhammad Hilmy Rasyad Sofyan', 'Ilkom', 'dummy@gmail.com', 6, 0, 0, 20, 40, 3.7, 'belum berpartisipasi'),
-('99999', '2100192', 'Muhammad Rayhan Nur', 'Ilkom', 'dummy@gmail.com', 6, 0, 0, 20, 40, 3.9, 'belum berpartisipasi'),
-('99999', '2100195', 'Davin Fausta Putra Sanjaya', 'Ilkom', 'dummy@gmail.com', 5, 0, 0, 20, 40, 3.5, 'belum berpartisipasi'),
-('99999', '2100846', 'Rafly Putra Santoso', 'Ilkom', 'dummy@gmail.com', 6, 0, 0, 20, 40, 4, 'belum berpartisipasi'),
-('66666', '2100901', 'Azzahra Siti Hadjar', 'Ilkom', 'dummy@gmail.com', 5, 0, 0, 20, 40, 3.8, 'belum berpartisipasi'),
-('11111', '2100991', 'Khana Yusdiana', 'Ilkom', 'dummy@gmail.com', 5, 0, 0, 20, 40, 4, 'belum berpartisipasi'),
-('22222', '2101103', 'Rifqi Fajar Indrayadi', 'Ilkom', 'dummy@gmail.com', 5, 0, 0, 20, 40, 3.9, 'belum berpartisipasi'),
-('66666', '2101114', 'Anandita Kusumah Mulyadi', 'Ilkom', 'dummy@gmail.com', 6, 0, 0, 20, 40, 3.9, 'belum berpartisipasi'),
-('66666', '2101147', 'Amida Zulfa Laila', 'Ilkom', 'dummy@gmail.com', 6, 0, 0, 20, 40, 3.8, 'belum berpartisipasi'),
-('66666', '2102159', 'Virza Raihan Kurniawan', 'Ilkom', 'dummy@gmail.com', 6, 0, 0, 20, 40, 4, 'belum berpartisipasi'),
-('22222', '2102204', 'Mohamad Asyqari Anugrah', 'Ilkom', 'dummy@gmail.com', 5, 0, 0, 20, 40, 3.9, 'belum berpartisipasi'),
-('66666', '2102268', 'Audry Leonardo Loo', 'Ilkom', 'dummy@gmail.com', 5, 0, 0, 20, 40, 3.8, 'belum berpartisipasi'),
-('66666', '2102292', 'Harold Vidian Exaudi Simarmata', 'Ilkom', 'dummy@gmail.com', 5, 0, 0, 20, 40, 4, 'belum berpartisipasi'),
-('66666', '2102313', 'Muhammad Kamal Robbani', 'Ilkom', 'dummy@gmail.com', 5, 0, 0, 20, 40, 4, 'belum berpartisipasi'),
-('77777', '2102421', 'Kania Dinda Fasya', 'Ilkom', 'dummy@gmail.com', 5, 0, 0, 20, 40, 3.8, 'belum berpartisipasi'),
-('77777', '2102545', 'Zahra Fitria Maharani', 'Ilkom', 'dummy@gmail.com', 5, 0, 0, 20, 40, 3.9, 'belum berpartisipasi'),
-('11111', '2102585', 'Apri Anggara Yudha', 'Ilkom', 'dummy@gmail.com', 5, 0, 0, 20, 40, 3.8, 'belum berpartisipasi'),
-('22222', '2102665', 'M. Cahyana Bintang Fajar', 'Ilkom', 'dummy@gmail.com', 3, 0, 0, 20, 40, 3.8, 'belum berpartisipasi'),
-('11111', '2102671', 'Anderfa Jalu Kawani', 'Ilkom', 'dummy@gmail.com', 3, 0, 0, 20, 40, 4, 'belum berpartisipasi'),
-('22222', '2102690', '\'Aafiyah Kaltsum', 'Ilkom', 'dummy@gmail.com', 3, 0, 0, 20, 40, 4, 'belum berpartisipasi'),
-('77777', '2102843', 'Najma Qalbi Dwiharani', 'Ilkom', 'dummy@gmail.com', 5, 0, 0, 20, 40, 4, 'belum berpartisipasi'),
-('77777', '2103207', 'Yasmin Fathanah Zakiyyah', 'Ilkom', 'dummy@gmail.com', 6, 0, 0, 20, 40, 3.9, 'belum berpartisipasi'),
-('11111', '2103507', 'Indah Resti Fauzi', 'Ilkom', 'dummy@gmail.com', 5, 0, 0, 20, 40, 3.8, 'belum berpartisipasi'),
-('77777', '2103703', 'Fauziyyah Zayyan Nur', 'Ilkom', 'dummy@gmail.com', 6, 0, 0, 20, 40, 4, 'belum berpartisipasi'),
-('77777', '2103727', 'Cantika Putri Arbiliansyah', 'Ilkom', 'dummy@gmail.com', 3, 0, 0, 20, 40, 3.8, 'belum berpartisipasi'),
-('11111', '2105673', 'Alghaniyu Naufal Hamid', 'Ilkom', 'dummy@gmail.com', 6, 0, 0, 20, 40, 3.8, 'belum berpartisipasi'),
-('99999', '2105745', 'Ridwan Albana', 'Ilkom', 'dummy@gmail.com', 6, 0, 0, 20, 40, 4, 'belum berpartisipasi'),
-('77777', '2105879', 'Farhan Muzhaffar Tiras Putra', 'Ilkom', 'dummy@gmail.com', 3, 0, 0, 20, 40, 3.9, 'belum berpartisipasi'),
-('11111', '2105885', 'Qurrotu\' Ainii', 'Ilkom', 'dummy@gmail.com', 6, 0, 0, 20, 40, 3.8, 'belum berpartisipasi'),
-('99999', '2105927', 'Febry Syaman Hasan', 'Ilkom', 'dummy@gmail.com', 4, 0, 0, 20, 40, 4, 'belum berpartisipasi'),
-('77777', '2105997', 'Muhammad Fakhri Fadhlurrahman', 'Ilkom', 'dummy@gmail.com', 5, 0, 0, 20, 40, 3.9, 'belum berpartisipasi'),
-('77777', '2106000', 'Sabila Rosad', 'Ilkom', 'dummy@gmail.com', 4, 0, 0, 20, 40, 4, 'belum berpartisipasi'),
-('11111', '2108061', 'Achmad Fauzan', 'Ilkom', 'dummy@gmail.com', 4, 0, 0, 20, 40, 4, 'belum berpartisipasi'),
-('99999', '2108067', 'Villeneuve Andhira Suwandhi', 'Ilkom', 'dummy@gmail.com', 5, 0, 0, 20, 40, 4, 'sudah berpartisipasi'),
-('66666', '2108077', 'Hestina Dwi Hartiwi', 'Ilkom', 'dummy@gmail.com', 5, 0, 0, 20, 40, 3.8, 'belum berpartisipasi'),
-('11111', '2108804', 'Laelatusya\'Diyah', 'Ilkom', 'dummy@gmail.com', 5, 0, 0, 20, 40, 4, 'belum berpartisipasi'),
-('66666', '2108927', 'Muhammad Fahru Rozi', 'Ilkom', 'dummy@gmail.com', 5, 0, 0, 20, 40, 3.9, 'belum berpartisipasi'),
-('22222', '2108938', 'Rafi Arsalan Mi\'Raj', 'Ilkom', 'dummy@gmail.com', 5, 0, 0, 20, 40, 4, 'belum berpartisipasi');
+('11111', '2100137', 'Muhamad Nur Yasin Amadudin', 'Ilmu Komputer', 'dummy@gmail.com', 5, 20, 14, 20, 20, 4, 'sudah berpartisipasi'),
+('22222', '2100187', 'Muhammad Hilmy Rasyad Sofyan', 'Pendidikan Ilmu Komputer', 'dummy@gmail.com', 6, 20, 18, 20, 20, 3.7, 'sudah berpartisipasi'),
+('99999', '2100192', 'Muhammad Rayhan Nur', 'Ilmu Komputer', 'dummy@gmail.com', 6, 0, 0, 20, 40, 3.9, 'belum berpartisipasi'),
+('99999', '2100195', 'Davin Fausta Putra Sanjaya', 'Pendidikan Ilmu Komputer', 'dummy@gmail.com', 5, 0, 0, 20, 40, 3.5, 'belum berpartisipasi'),
+('99999', '2100846', 'Rafly Putra Santoso', 'Ilmu Komputer', 'dummy@gmail.com', 6, 0, 0, 20, 40, 4, 'belum berpartisipasi'),
+('66666', '2100901', 'Azzahra Siti Hadjar', 'Pendidikan Ilmu Komputer', 'dummy@gmail.com', 5, 2, 0, 20, 38, 3.8, 'sudah berpartisipasi'),
+('11111', '2100991', 'Khana Yusdiana', 'Ilmu Komputer', 'dummy@gmail.com', 5, 20, 20, 20, 20, 4, 'sudah berpartisipasi'),
+('22222', '2101103', 'Rifqi Fajar Indrayadi', 'Pendidikan Ilmu Komputer', 'dummy@gmail.com', 5, 0, 0, 20, 40, 3.9, 'belum berpartisipasi'),
+('66666', '2101114', 'Anandita Kusumah Mulyadi', 'Pendidikan Komputer', 'dummy@gmail.com', 6, 20, 20, 20, 20, 3.9, 'sudah berpartisipasi'),
+('66666', '2101147', 'Amida Zulfa Laila', 'Pendidikan Ilmu Komputer', 'dummy@gmail.com', 6, 0, 0, 20, 40, 3.8, 'belum berpartisipasi'),
+('66666', '2102159', 'Virza Raihan Kurniawan', 'Ilmu Komputer', 'dummy@gmail.com', 6, 0, 0, 20, 40, 4, 'belum berpartisipasi'),
+('22222', '2102204', 'Mohamad Asyqari Anugrah', 'Pendidikan Ilmu Komputer', 'dummy@gmail.com', 5, 0, 0, 20, 40, 3.9, 'belum berpartisipasi'),
+('66666', '2102268', 'Audry Leonardo Loo', 'Ilmu Komputer', 'dummy@gmail.com', 5, 0, 0, 20, 40, 3.8, 'belum berpartisipasi'),
+('66666', '2102292', 'Harold Vidian Exaudi Simarmata', 'Pendidikan Ilmu Komputer', 'dummy@gmail.com', 5, 0, 0, 20, 40, 4, 'belum berpartisipasi'),
+('66666', '2102313', 'Muhammad Kamal Robbani', 'Ilmu Komputer', 'dummy@gmail.com', 5, 0, 0, 20, 40, 4, 'belum berpartisipasi'),
+('77777', '2102421', 'Kania Dinda Fasya', 'Pendidikan Ilmu Komputer', 'dummy@gmail.com', 5, 0, 0, 20, 40, 3.8, 'belum berpartisipasi'),
+('77777', '2102545', 'Zahra Fitria Maharani', 'Ilmu Komputer', 'dummy@gmail.com', 5, 0, 0, 20, 40, 3.9, 'belum berpartisipasi'),
+('11111', '2102585', 'Apri Anggara Yudha', 'Pendidikan Ilmu Komputer', 'dummy@gmail.com', 5, 0, 0, 20, 40, 3.8, 'belum berpartisipasi'),
+('22222', '2102665', 'M. Cahyana Bintang Fajar', 'Ilmu Komputer', 'dummy@gmail.com', 3, 0, 0, 20, 40, 3.8, 'belum berpartisipasi'),
+('11111', '2102671', 'Anderfa Jalu Kawani', 'Pendidikan Ilmu Komputer', 'dummy@gmail.com', 3, 0, 0, 20, 40, 4, 'belum berpartisipasi'),
+('22222', '2102690', '\'Aafiyah Kaltsum', 'Ilmu Komputer', 'dummy@gmail.com', 3, 0, 0, 20, 40, 4, 'belum berpartisipasi'),
+('77777', '2102843', 'Najma Qalbi Dwiharani', 'Pendidikan Ilmu Komputer', 'dummy@gmail.com', 5, 0, 0, 20, 40, 4, 'belum berpartisipasi'),
+('77777', '2103207', 'Yasmin Fathanah Zakiyyah', 'Ilmu Komputer', 'dummy@gmail.com', 6, 0, 0, 20, 40, 3.9, 'belum berpartisipasi'),
+('11111', '2103507', 'Indah Resti Fauzi', 'Pendidikan Ilmu Komputer', 'dummy@gmail.com', 5, 0, 0, 20, 40, 3.8, 'sudah berpartisipasi'),
+('77777', '2103703', 'Fauziyyah Zayyan Nur', 'Ilmu Komputer', 'dummy@gmail.com', 6, 0, 0, 20, 40, 4, 'belum berpartisipasi'),
+('77777', '2103727', 'Cantika Putri Arbiliansyah', 'Ilmu Komputer', 'dummy@gmail.com', 3, 0, 0, 20, 40, 3.8, 'belum berpartisipasi'),
+('11111', '2105673', 'Alghaniyu Naufal Hamid', 'Pendidikan Ilmu Komputer', 'dummy@gmail.com', 6, 0, 0, 20, 40, 3.8, 'belum berpartisipasi'),
+('99999', '2105745', 'Ridwan Albana', 'Ilmu Komputer', 'dummy@gmail.com', 6, 0, 0, 20, 40, 4, 'belum berpartisipasi'),
+('77777', '2105879', 'Farhan Muzhaffar Tiras Putra', 'Ilmu Komputer', 'dummy@gmail.com', 3, 0, 0, 20, 40, 3.9, 'belum berpartisipasi'),
+('11111', '2105885', 'Qurrotu\' Ainii', 'Pendidikan Ilmu Komputer', 'dummy@gmail.com', 6, 0, 0, 20, 40, 3.8, 'belum berpartisipasi'),
+('99999', '2105927', 'Febry Syaman Hasan', 'Pendidikan Ilmu Komputer', 'dummy@gmail.com', 4, 0, 0, 20, 40, 4, 'belum berpartisipasi'),
+('77777', '2105997', 'Muhammad Fakhri Fadhlurrahman', 'Ilmu Komputer', 'dummy@gmail.com', 5, 0, 0, 20, 40, 3.9, 'belum berpartisipasi'),
+('77777', '2106000', 'Sabila Rosad', 'Ilmu Komputer', 'dummy@gmail.com', 4, 0, 0, 20, 40, 4, 'belum berpartisipasi'),
+('11111', '2108061', 'Achmad Fauzan', 'Pendidikan Ilmu Komputer', 'dummy@gmail.com', 4, 0, 0, 20, 40, 4, 'belum berpartisipasi'),
+('99999', '2108067', 'Villeneuve Andhira Suwandhi', 'Ilmu Komputer', 'dummy@gmail.com', 5, 0, 0, 20, 40, 4, 'sudah berpartisipasi'),
+('66666', '2108077', 'Hestina Dwi Hartiwi', 'Pendidikan Ilmu Komputer', 'dummy@gmail.com', 5, 0, 0, 20, 40, 3.8, 'belum berpartisipasi'),
+('11111', '2108804', 'Laelatusya\'Diyah', 'Ilmu Komputer', 'dummy@gmail.com', 5, 0, 0, 20, 40, 4, 'belum berpartisipasi'),
+('66666', '2108927', 'Muhammad Fahru Rozi', 'Pendidikan Ilmu Komputer', 'dummy@gmail.com', 5, 0, 0, 20, 40, 3.9, 'belum berpartisipasi'),
+('22222', '2108938', 'Rafi Arsalan Miraj', 'Ilmu Komputer', 'dummy@gmail.com', 5, 0, 0, 20, 40, 4, 'belum berpartisipasi');
 
 -- --------------------------------------------------------
 
@@ -361,13 +368,13 @@ ALTER TABLE `tprogrammbkm`
 -- AUTO_INCREMENT for table `kontrakmatkul`
 --
 ALTER TABLE `kontrakmatkul`
-  MODIFY `id_kontrakmatkul` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id_kontrakmatkul` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `kontrakmbkm`
 --
 ALTER TABLE `kontrakmbkm`
-  MODIFY `id_kontrakmbkm` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_kontrakmbkm` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- Constraints for dumped tables
