@@ -172,6 +172,7 @@ if(isset($_GET["id"]) && !empty(trim($_GET["id"]))){
 
                     <p>Mohon tunggu konfirmasi lebih lanjut</p>
                     <p>Pendaftaran anda sudah diterima? Klik <a href='terimapendaftaran.php?id=<?= $id; ?>'>disini</a></p>
+                    <p>Pendaftaran anda ditolak? Klik <a href='tolakpendaftaran.php?id=<?= $id; ?>' class='text-danger'>disini</a></p>
                 </div>
 
             </div>

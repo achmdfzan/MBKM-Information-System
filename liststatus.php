@@ -1,3 +1,32 @@
+<?php
+
+session_start();
+
+$sql = "SELECT tmahasiswa.nim, nama_mahasiswa, nama_program, nama_pembimbing, waktu_mulai, waktu_selesai, status from tmahasiswa, tpembimbing, tprogrammbkm, kontrakmbkm where tmahasiswa.nim=kontrakmbkm.nim and tpembimbing.nip=kontrakmbkm.nip_pembimbingmbkm and tprogrammbkm.id_program=kontrakmbkm.id_program group by kontrakmbkm.nim";
+
+if(isset($_GET["stat"]) && !empty(trim($_GET["stat"]))){
+    $stat = trim($_GET["stat"]);
+
+    $temp = "";
+    if($stat == "smd"){
+        $temp = "sedang mendaftar";
+    } else if($stat == "mpb"){
+        $temp = "menunggu pembimbing";
+    } else if($stat == "smg"){
+        $temp = "sedang mengikuti";
+    } else if($stat == "sls"){
+        $temp = "selesai";
+    } else if($stat == "tdt"){
+        $temp = "tidak diterima";
+    } else{
+        $temp = "mengundurkan diri";
+    }
+
+    $sql = "SELECT tmahasiswa.nim, nama_mahasiswa, nama_program, nama_pembimbing, waktu_mulai, waktu_selesai, status from tmahasiswa, tpembimbing, tprogrammbkm, kontrakmbkm where tmahasiswa.nim=kontrakmbkm.nim and tpembimbing.nip=kontrakmbkm.nip_pembimbingmbkm and tprogrammbkm.id_program=kontrakmbkm.id_program and kontrakmbkm.status='$temp' group by kontrakmbkm.nim";  
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,13 +54,19 @@
 
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="admin.php">
+                <div class="sidebar-brand-text mx-3">Pendataan MBKM</div>
+            </a>
+
+            <hr class="sidebar-divider my-0">
+
             <li class="nav-item">
                 <a class="nav-link" href="admin.php">
                     <span>Dashboard</span></a>
             </li>
             
             <li class="nav-item active">
-                <a class="nav-link" href="admin.php">
+                <a class="nav-link" href="liststatus.php">
                     <span>Status</span></a>
             </li>
 
@@ -89,16 +124,24 @@
 
                 <div class="container-fluid">
 
-                    <div class="card shadow mb-4">
+                        <div class="card shadow mb-4">
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">List status mahasiswa</h6>
+                        </div>
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary mb-2">Filter :</h6>
+                            <a href='liststatus.php' class='btn btn-dark btn-act'>tampilkan semua</a>
+                            <a href='liststatus.php?stat=smd' class='btn btn-warning btn-act'>sedang mendaftar</a>
+                            <a href='liststatus.php?stat=mpb' class='btn btn-info btn-act'>menunggu pembimbing</a>
+                            <a href='liststatus.php?stat=smg' class='btn btn-primary btn-act'>sedang mengikuti</a>
+                            <a href='liststatus.php?stat=sls' class='btn btn-success btn-act'>selesai</a>
+                            <a href='liststatus.php?stat=tdt' class='btn btn-danger btn-act'>tidak diterima</a>
                         </div>
                         <div class="card-body">
                         <?php
 
                         require_once "config.php";
 
-                        $sql = "SELECT tmahasiswa.nim, nama_mahasiswa, nama_program, nama_pembimbing, waktu_mulai, waktu_selesai, status from tmahasiswa, tpembimbing, tprogrammbkm, kontrakmbkm where tmahasiswa.nim=kontrakmbkm.nim and tpembimbing.nip=kontrakmbkm.nip_pembimbingmbkm and tprogrammbkm.id_program=kontrakmbkm.id_program group by kontrakmbkm.nim";
                         if($result = mysqli_query($link, $sql)){
                             if(mysqli_num_rows($result) > 0){
                                 echo '<div class="table-responsive">';
@@ -117,6 +160,7 @@
                                         echo "</thead>";
                                         echo "<tbody>";
                                         $num = 1;
+                                        $tipe = "";
                                         while($row = mysqli_fetch_array($result)){
                                             echo "<tr>";
                                                 echo "<td>" . $num++ . "</td>";

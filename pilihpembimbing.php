@@ -130,7 +130,7 @@ if(isset($_GET["id"]) && !empty(trim($_GET["id"]))){
 
                         require_once "config.php";
 
-                        $sql = "SELECT * FROM tpembimbing";
+                        $sql = "SELECT * FROM tpembimbing WHERE nip != '00000'";
                         if($result = mysqli_query($link, $sql)){
                             if(mysqli_num_rows($result) > 0){
                                 echo '<div class="table-responsive">';

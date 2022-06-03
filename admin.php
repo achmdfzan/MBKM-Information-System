@@ -26,6 +26,12 @@
 
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="admin.php">
+                <div class="sidebar-brand-text mx-3">Pendataan MBKM</div>
+            </a>
+
+            <hr class="sidebar-divider my-0">
+
             <li class="nav-item active">
                 <a class="nav-link" href="admin.php">
                     <span>Dashboard</span></a>
@@ -101,7 +107,7 @@
 
                         require_once "config.php";
 
-                        $sql = "SELECT nim, nama_mahasiswa, nama_pembimbing FROM tmahasiswa as tm left join tpembimbing as tp on tm.nip = tp.nip WHERE sks_dalam_univ < 1 OR sks_luar_univ < 21 group by tm.nim";
+                        $sql = "SELECT nim, nama_mahasiswa, nama_pembimbing FROM tmahasiswa as tm left join tpembimbing as tp on tm.nip = tp.nip WHERE sks_akumulatif > 19 group by tm.nim";
                         if($result = mysqli_query($link, $sql)){
                             if(mysqli_num_rows($result) > 0){
                                 echo '<div class="table-responsive">';

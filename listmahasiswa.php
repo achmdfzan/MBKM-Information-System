@@ -26,13 +26,19 @@
 
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-        <li class="nav-item">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="admin.php">
+                <div class="sidebar-brand-text mx-3">Pendataan MBKM</div>
+            </a>
+
+            <hr class="sidebar-divider my-0">
+            
+            <li class="nav-item">
                 <a class="nav-link" href="admin.php">
                     <span>Dashboard</span></a>
             </li>
             
             <li class="nav-item">
-                <a class="nav-link" href="admin.php">
+                <a class="nav-link" href="liststatus.php">
                     <span>Status</span></a>
             </li>
 
@@ -50,7 +56,7 @@
                 <a class="nav-link" href="listpembimbing.php">
                     <span>Pembimbing</span></a>
             </li>
-            
+
             <li class="nav-item">
                 <a class="nav-link" href="reset.php">
                     <span>Reset</span></a>
@@ -107,12 +113,12 @@
                                         echo "<thead>";
                                             echo "<tr>";
                                                 echo "<th>No.</th>";
-                                                echo "<th>nim</th>";
+                                                echo "<th>NIM</th>";
                                                 echo "<th>Nama</th>";
-                                                echo "<th>prodi</th>";
-                                                echo "<th>Email</th>";
+                                                echo "<th>Prodi</th>";
                                                 echo "<th>Semester</th>";
-                                                echo "<th>IP</th>";
+                                                echo "<th>Sisa SKS Dalam Universitas</th>";
+                                                echo "<th>Sisa SKS Luar Universitas</th>";
                                             echo "</tr>";
                                         echo "</thead>";
                                         echo "<tbody>";
@@ -123,9 +129,9 @@
                                                 echo "<td>" . $row['nim'] . "</td>";
                                                 echo "<td>" . $row['nama_mahasiswa'] . "</td>";
                                                 echo "<td>" . $row['prodi'] . "</td>";
-                                                echo "<td>" . $row['email_mahasiswa'] . "</td>";
                                                 echo "<td>" . $row['semester_mahasiswa'] . "</td>";
-                                                echo "<td>" . $row['ipk_mahasiswa'] . "</td>";
+                                                echo "<td>" . $row['sks_dalam_univ'] . "</td>";
+                                                echo "<td>" . $row['sks_luar_univ'] . "</td>";
                                             echo "</tr>";
                                         }
                                         echo "</tbody>";                            

@@ -1,3 +1,40 @@
+<?php
+
+session_start();
+
+if(isset($_GET["id"]) && !empty(trim($_GET["id"]))){
+    $id = trim($_GET["id"]);
+
+    require_once "config.php";
+
+    $sql = "SELECT * FROM tmahasiswa WHERE nim = ?";
+
+    if($stmt = mysqli_prepare($link, $sql)){
+        mysqli_stmt_bind_param($stmt, "s", $param_nim);
+
+        $param_nim = $id;
+
+        if(mysqli_stmt_execute($stmt)){
+            $result = mysqli_stmt_get_result($stmt);
+
+            if(mysqli_num_rows($result) == 1){
+                $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+
+                $nim = $row["nim"];
+                $nama_mahasiswa = $row["nama_mahasiswa"];
+            } else{
+                echo "Oops! Something went wrong. Please try again later.";
+            }
+        } else{
+            echo "Oops! Something went wrong. Please try again later.";
+        }
+    }
+
+    mysqli_stmt_close($stmt);
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +46,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>MBKM - Admin</title>
+    <title>MBKM - Status Mahasiswa</title>
 
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
@@ -24,45 +61,6 @@
 
     <div id="wrapper">
 
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="admin.php">
-                <div class="sidebar-brand-text mx-3">Pendataan MBKM</div>
-            </a>
-
-            <hr class="sidebar-divider my-0">
-
-            <li class="nav-item">
-                <a class="nav-link" href="admin.php">
-                    <span>Dashboard</span></a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link" href="admin.php">
-                    <span>Status</span></a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link" href="listmahasiswa.php">
-                    <span>Mahasiswa</span></a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link" href="listprogram.php">
-                    <span>Program</span></a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link" href="listpembimbing.php">
-                    <span>Pembimbing</span></a>
-            </li>
-            
-            <li class="nav-item active">
-                <a class="nav-link" href="reset.php">
-                    <span>Reset</span></a>
-            </li>
-        </ul>
-
         <div id="content-wrapper" class="d-flex flex-column">
 
             <div id="content">
@@ -74,7 +72,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="index.php" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Admin</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= $nama_mahasiswa ?></span>
                                 <img class="img-profile rounded-circle"
                                     src="img/undraw_profile.svg">
                             </a>
@@ -93,11 +91,11 @@
 
                 </nav>
 
-                <div class="container-fluid text-center">
-                    <h1 class="h3 mb-4 text-gray-800">Set semua data untuk semester berikutnya</h1>
-                    <a href="prosesreset.php" onclick="return confirm('Apakah anda yakin?');" class='btn btn-danger'>Tambah Semester</a>
-                </div>
+                <div class="container-fluid align-items-center text-center">
 
+                    <h1 class="h3 mb-4 text-gray-800">Anda tidak diterima dalam program MBKM</h1>
+                    <p>Sampai jumpa lagi di kesempatan berikutnya</p>
+                </div>
 
             </div>
 
@@ -111,11 +109,6 @@
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <script src="js/sb-admin-2.min.js"></script>
-
-    <script src="vendor/chart.js/Chart.min.js"></script>
-
-    <script src="js/demo/chart-area-demo.js"></script>
-    <script src="js/demo/chart-pie-demo.js"></script>
 
 </body>
 

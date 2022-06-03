@@ -128,9 +128,9 @@ if(isset($_GET["id"]) && !empty(trim($_GET["id"]))){
                                                 echo "<td>" . $row['id_program'] . "</td>";
                                                 echo "<td>" . $row['nama_program'] . "</td>";
                                                 echo "<td>" . $row['jenis_program'] . "</td>";
-                                                echo "<td>" . $row['durasi'] . "</td>";
+                                                echo "<td>" . $row['durasi'] . " bulan</td>";
                                                 echo "<td>" . $row['sks_program'] . "</td>";
-                                                echo "<td>" . $row['lingkup_program'] . "</td>";
+                                                echo "<td><button type='button' class='btn btn-". ($row["lingkup_program"] == "dalam" ? "danger" : "success") ."'>" . $row['lingkup_program'] . " universitas</button></td>";
                                                 echo "<td><a href='prosesdaftar.php?id=". $row["id_program"] ."' class='btn btn-primary btn-act'>Daftar</a></td>";
                                             echo "</tr>";
                                         }
