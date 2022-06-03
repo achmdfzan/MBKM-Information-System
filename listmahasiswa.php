@@ -26,9 +26,14 @@
 
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-            <li class="nav-item">
+        <li class="nav-item">
                 <a class="nav-link" href="admin.php">
                     <span>Dashboard</span></a>
+            </li>
+            
+            <li class="nav-item">
+                <a class="nav-link" href="admin.php">
+                    <span>Status</span></a>
             </li>
 
             <li class="nav-item active">
@@ -44,6 +49,11 @@
             <li class="nav-item">
                 <a class="nav-link" href="listpembimbing.php">
                     <span>Pembimbing</span></a>
+            </li>
+            
+            <li class="nav-item">
+                <a class="nav-link" href="reset.php">
+                    <span>Reset</span></a>
             </li>
 
         </ul>
@@ -102,7 +112,6 @@
                                                 echo "<th>prodi</th>";
                                                 echo "<th>Email</th>";
                                                 echo "<th>Semester</th>";
-                                                echo "<th>SKS Total</th>";
                                                 echo "<th>IP</th>";
                                             echo "</tr>";
                                         echo "</thead>";
@@ -116,7 +125,6 @@
                                                 echo "<td>" . $row['prodi'] . "</td>";
                                                 echo "<td>" . $row['email_mahasiswa'] . "</td>";
                                                 echo "<td>" . $row['semester_mahasiswa'] . "</td>";
-                                                echo "<td>" . $row['sks_akumulatif'] . "</td>";
                                                 echo "<td>" . $row['ipk_mahasiswa'] . "</td>";
                                             echo "</tr>";
                                         }

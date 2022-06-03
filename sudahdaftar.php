@@ -1,19 +1,24 @@
 <?php
 
+session_start();
+
 if(isset($_GET["id"]) && !empty(trim($_GET["id"]))){
     $id = trim($_GET["id"]);
 
     require_once "config.php";
 
-    $sql = "SELECT * FROM kontrakmbkm WHERE nim = ?";
+    $sql = "SELECT * FROM kontrakmbkm WHERE nim = ? AND semester_kontrak = ?";
 
     if($stmt = mysqli_prepare($link, $sql)){
-        mysqli_stmt_bind_param($stmt, "s", $param_nim);
+        mysqli_stmt_bind_param($stmt, "ss", $param_nim, $param_semester_kontrak);
 
         $param_nim = $id;
+        $param_semester_kontrak = $_SESSION['semester_mahasiswa'];
 
         if(mysqli_stmt_execute($stmt)){
             $result = mysqli_stmt_get_result($stmt);
+
+            print_r($result);
 
             if(mysqli_num_rows($result) == 1){
                 $row = mysqli_fetch_array($result, MYSQLI_ASSOC);

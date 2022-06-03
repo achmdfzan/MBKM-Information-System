@@ -46,16 +46,15 @@
                     <span>Program</span></a>
             </li>
             
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="listpembimbing.php">
                     <span>Pembimbing</span></a>
             </li>
             
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link" href="reset.php">
                     <span>Reset</span></a>
             </li>
-
         </ul>
 
         <div id="content-wrapper" class="d-flex flex-column">
@@ -88,58 +87,11 @@
 
                 </nav>
 
-                <div class="container-fluid">
-
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">List pembimbing</h6>
-                        </div>
-                        <div class="card-body">
-                        <?php
-
-                        require_once "config.php";
-
-                        $sql = "SELECT * FROM tpembimbing";
-                        if($result = mysqli_query($link, $sql)){
-                            if(mysqli_num_rows($result) > 0){
-                                echo '<div class="table-responsive">';
-                                    echo '<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">';
-                                        echo "<thead>";
-                                            echo "<tr>";
-                                                echo "<th>No.</th>";
-                                                echo "<th>NIP</th>";
-                                                echo "<th>Nama Pembimbing</th>";
-                                                echo "<th>Email Pembimbing</th>";
-                                            echo "</tr>";
-                                        echo "</thead>";
-                                        echo "<tbody>";
-                                        $num = 1;
-                                        while($row = mysqli_fetch_array($result)){
-                                            echo "<tr>";
-                                                echo "<td>" . $num++ . "</td>";
-                                                echo "<td>" . $row['nip'] . "</td>";
-                                                echo "<td>" . $row['nama_pembimbing'] . "</td>";
-                                                echo "<td>" . $row['email_pembimbing'] . "</td>";
-                                            echo "</tr>";
-                                        }
-                                        echo "</tbody>";                            
-                                    echo "</table>";
-                                echo '</div>';
-
-                                mysqli_free_result($result);
-                            } else{
-                                echo '<div class="alert alert-danger"><em>List kosong</em></div>';
-                            }
-                        } else{
-                            echo "Oops! Something went wrong. Please try again later.";
-                        }
-                        
-                        mysqli_close($link);
-                        ?>
-                        </div>
-                    </div>
-
+                <div class="container-fluid text-center">
+                    <h1 class="h3 mb-4 text-gray-800">Set semua data untuk semester berikutnya</h1>
+                    <a href="prosesreset.php" onclick="return confirm('Apakah anda yakin?');" class='btn btn-danger'>Tambah Semester</a>
                 </div>
+
 
             </div>
 

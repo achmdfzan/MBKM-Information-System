@@ -15,7 +15,6 @@
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
-
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
 </head>
@@ -26,12 +25,12 @@
 
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-        <li class="nav-item">
+            <li class="nav-item">
                 <a class="nav-link" href="admin.php">
                     <span>Dashboard</span></a>
             </li>
             
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link" href="admin.php">
                     <span>Status</span></a>
             </li>
@@ -46,7 +45,7 @@
                     <span>Program</span></a>
             </li>
             
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="listpembimbing.php">
                     <span>Pembimbing</span></a>
             </li>
@@ -92,14 +91,14 @@
 
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">List pembimbing</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">List status mahasiswa</h6>
                         </div>
                         <div class="card-body">
                         <?php
 
                         require_once "config.php";
 
-                        $sql = "SELECT * FROM tpembimbing";
+                        $sql = "SELECT tmahasiswa.nim, nama_mahasiswa, nama_program, nama_pembimbing, waktu_mulai, waktu_selesai, status from tmahasiswa, tpembimbing, tprogrammbkm, kontrakmbkm where tmahasiswa.nim=kontrakmbkm.nim and tpembimbing.nip=kontrakmbkm.nip_pembimbingmbkm and tprogrammbkm.id_program=kontrakmbkm.id_program group by kontrakmbkm.nim";
                         if($result = mysqli_query($link, $sql)){
                             if(mysqli_num_rows($result) > 0){
                                 echo '<div class="table-responsive">';
@@ -107,9 +106,13 @@
                                         echo "<thead>";
                                             echo "<tr>";
                                                 echo "<th>No.</th>";
-                                                echo "<th>NIP</th>";
+                                                echo "<th>NIM</th>";
+                                                echo "<th>Nama</th>";
+                                                echo "<th>Nama Program</th>";
                                                 echo "<th>Nama Pembimbing</th>";
-                                                echo "<th>Email Pembimbing</th>";
+                                                echo "<th>Waktu Mulai</th>";
+                                                echo "<th>Waktu Selesai</th>";
+                                                echo "<th>Status</th>";
                                             echo "</tr>";
                                         echo "</thead>";
                                         echo "<tbody>";
@@ -117,9 +120,13 @@
                                         while($row = mysqli_fetch_array($result)){
                                             echo "<tr>";
                                                 echo "<td>" . $num++ . "</td>";
-                                                echo "<td>" . $row['nip'] . "</td>";
+                                                echo "<td>" . $row['nim'] . "</td>";
+                                                echo "<td>" . $row['nama_mahasiswa'] . "</td>";
+                                                echo "<td>" . $row['nama_program'] . "</td>";
                                                 echo "<td>" . $row['nama_pembimbing'] . "</td>";
-                                                echo "<td>" . $row['email_pembimbing'] . "</td>";
+                                                echo "<td>" . $row['waktu_mulai'] . "</td>";
+                                                echo "<td>" . $row['waktu_selesai'] . "</td>";
+                                                echo "<td>" . $row['status'] . "</td>";
                                             echo "</tr>";
                                         }
                                         echo "</tbody>";                            

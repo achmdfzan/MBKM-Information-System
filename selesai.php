@@ -108,7 +108,7 @@ if(isset($_GET["id"]) && !empty(trim($_GET["id"]))){
 
                         require_once "config.php";
 
-                        $sql = "SELECT * FROM tmatkul WHERE semester_mk > 4";
+                        $sql = "SELECT * FROM tmatkul WHERE semester_mk > 4 AND kode_mk NOT IN (SELECT kode_mk FROM kontrakmatkul WHERE tipe = 'konversi' AND nim = ". $id .")";
                         if($result = mysqli_query($link, $sql)){
                             if(mysqli_num_rows($result) > 0){
                                 echo '<div class="table-responsive">';

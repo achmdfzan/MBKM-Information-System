@@ -26,9 +26,14 @@
 
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-            <li class="nav-item">
+        <li class="nav-item">
                 <a class="nav-link" href="admin.php">
                     <span>Dashboard</span></a>
+            </li>
+            
+            <li class="nav-item">
+                <a class="nav-link" href="admin.php">
+                    <span>Status</span></a>
             </li>
 
             <li class="nav-item">
@@ -44,6 +49,11 @@
             <li class="nav-item">
                 <a class="nav-link" href="listpembimbing.php">
                     <span>Pembimbing</span></a>
+            </li>
+            
+            <li class="nav-item">
+                <a class="nav-link" href="reset.php">
+                    <span>Reset</span></a>
             </li>
 
         </ul>

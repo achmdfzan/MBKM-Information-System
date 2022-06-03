@@ -30,6 +30,11 @@
                 <a class="nav-link" href="admin.php">
                     <span>Dashboard</span></a>
             </li>
+            
+            <li class="nav-item">
+                <a class="nav-link" href="liststatus.php">
+                    <span>Status</span></a>
+            </li>
 
             <li class="nav-item">
                 <a class="nav-link" href="listmahasiswa.php">
@@ -44,6 +49,11 @@
             <li class="nav-item">
                 <a class="nav-link" href="listpembimbing.php">
                     <span>Pembimbing</span></a>
+            </li>
+            
+            <li class="nav-item">
+                <a class="nav-link" href="reset.php">
+                    <span>Reset</span></a>
             </li>
 
         </ul>
@@ -87,9 +97,11 @@
                         <div class="card-body">
                         <?php
 
+                        session_start();
+
                         require_once "config.php";
 
-                        $sql = "SELECT tmhs.nim, nama_mahasiswa, nama_program, nama_pembimbing, waktu_mulai, waktu_selesai, status from (SELECT * FROM tmahasiswa WHERE sks_dalam_univ < 1 OR sks_luar_univ < 21) as tmhs, tpembimbing, tprogrammbkm, kontrakmbkm where tmhs.nim=kontrakmbkm.nim and tpembimbing.nip=kontrakmbkm.nip_pembimbingmbkm and tprogrammbkm.id_program=kontrakmbkm.id_program group by kontrakmbkm.nim";
+                        $sql = "SELECT nim, nama_mahasiswa, nama_pembimbing FROM tmahasiswa as tm left join tpembimbing as tp on tm.nip = tp.nip WHERE sks_dalam_univ < 1 OR sks_luar_univ < 21 group by tm.nim";
                         if($result = mysqli_query($link, $sql)){
                             if(mysqli_num_rows($result) > 0){
                                 echo '<div class="table-responsive">';
@@ -99,11 +111,7 @@
                                                 echo "<th>No.</th>";
                                                 echo "<th>NIM</th>";
                                                 echo "<th>Nama</th>";
-                                                echo "<th>Nama Program</th>";
-                                                echo "<th>Nama Pembimbing</th>";
-                                                echo "<th>Waktu Mulai</th>";
-                                                echo "<th>Waktu Selesai</th>";
-                                                echo "<th>Status</th>";
+                                                echo "<th>Nama Dosen Wali</th>";
                                             echo "</tr>";
                                         echo "</thead>";
                                         echo "<tbody>";
@@ -113,11 +121,7 @@
                                                 echo "<td>" . $num++ . "</td>";
                                                 echo "<td>" . $row['nim'] . "</td>";
                                                 echo "<td>" . $row['nama_mahasiswa'] . "</td>";
-                                                echo "<td>" . $row['nama_program'] . "</td>";
                                                 echo "<td>" . $row['nama_pembimbing'] . "</td>";
-                                                echo "<td>" . $row['waktu_mulai'] . "</td>";
-                                                echo "<td>" . $row['waktu_selesai'] . "</td>";
-                                                echo "<td>" . $row['status'] . "</td>";
                                             echo "</tr>";
                                         }
                                         echo "</tbody>";                            
@@ -131,49 +135,6 @@
                         } else{
                             echo "Oops! Something went wrong. Please try again later.";
                         }
-
-                        // $sql = "SELECT * FROM tmahasiswa WHERE sks_dalam_univ < 1 OR sks_luar_univ < 21";
-                        // if($result = mysqli_query($link, $sql)){
-                        //     if(mysqli_num_rows($result) > 0){
-                        //         echo '<div class="table-responsive">';
-                        //             echo '<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">';
-                        //                 echo "<thead>";
-                        //                     echo "<tr>";
-                        //                         echo "<th>No.</th>";
-                        //                         echo "<th>nim</th>";
-                        //                         echo "<th>Nama</th>";
-                        //                         echo "<th>prodi</th>";
-                        //                         echo "<th>Email</th>";
-                        //                         echo "<th>Semester</th>";
-                        //                         echo "<th>SKS Total</th>";
-                        //                         echo "<th>IP</th>";
-                        //                     echo "</tr>";
-                        //                 echo "</thead>";
-                        //                 echo "<tbody>";
-                        //                 $num = 1;
-                        //                 while($row = mysqli_fetch_array($result)){
-                        //                     echo "<tr>";
-                        //                         echo "<td>" . $num++ . "</td>";
-                        //                         echo "<td>" . $row['nim'] . "</td>";
-                        //                         echo "<td>" . $row['nama_mahasiswa'] . "</td>";
-                        //                         echo "<td>" . $row['prodi'] . "</td>";
-                        //                         echo "<td>" . $row['email_mahasiswa'] . "</td>";
-                        //                         echo "<td>" . $row['semester_mahasiswa'] . "</td>";
-                        //                         echo "<td>" . $row['sks_akumulatif'] . "</td>";
-                        //                         echo "<td>" . $row['ipk_mahasiswa'] . "</td>";
-                        //                     echo "</tr>";
-                        //                 }
-                        //                 echo "</tbody>";                            
-                        //             echo "</table>";
-                        //         echo '</div>';
-
-                        //         mysqli_free_result($result);
-                        //     } else{
-                        //         echo '<div class="alert alert-danger"><em>List kosong</em></div>';
-                        //     }
-                        // } else{
-                        //     echo "Oops! Something went wrong. Please try again later.";
-                        // }
                         
                         mysqli_close($link);
                         ?>
