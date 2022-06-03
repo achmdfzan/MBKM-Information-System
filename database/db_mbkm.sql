@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 02, 2022 at 05:06 AM
+-- Generation Time: Jun 02, 2022 at 06:06 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -40,7 +40,13 @@ CREATE TABLE `kontrakmatkul` (
 --
 
 INSERT INTO `kontrakmatkul` (`kode_mk`, `nim`, `tipe`, `id_kontrakmatkul`, `sem_kontrak`) VALUES
-('IK330', '2100901', 'konversi', 16, 6);
+('IK330', '2100901', 'konversi', 16, 6),
+('IK310', '2102843', 'konversi', 17, 6),
+('IK330', '2102843', 'konversi', 18, 6),
+('IK310', '2102843', 'konversi', 19, 6),
+('IK310', '2102843', 'konversi', 20, 6),
+('IK310', '2102843', 'konversi', 21, 6),
+('IK330', '2102843', 'konversi', 22, 6);
 
 --
 -- Triggers `kontrakmatkul`
@@ -85,7 +91,8 @@ CREATE TABLE `kontrakmbkm` (
 
 INSERT INTO `kontrakmbkm` (`nim`, `id_program`, `status`, `id_kontrakmbkm`, `nip_pembimbingmbkm`, `semester_kontrak`, `waktu_mulai`, `waktu_selesai`) VALUES
 ('2100901', '33333', 'selesai', 9, '11111111', 6, '2022-06-02', '2022-06-02'),
-('2108061', '22222', 'sedang mendaftar', 10, NULL, 5, NULL, NULL);
+('2108061', '22222', 'sedang mendaftar', 10, NULL, 5, NULL, NULL),
+('2102843', '33333', 'selesai', 11, '22222222', 6, '2022-06-02', '2022-06-02');
 
 --
 -- Triggers `kontrakmbkm`
@@ -123,6 +130,7 @@ CREATE TRIGGER `before_selesai_update` BEFORE UPDATE ON `kontrakmbkm` FOR EACH R
         END IF;
 
         UPDATE tmahasiswa AS tm SET sks_akumulatif=sks_akumulatif+sks WHERE new.nim=tm.nim;
+        
     END IF;
     
 END
@@ -177,7 +185,7 @@ INSERT INTO `tmahasiswa` (`nip`, `nim`, `nama_mahasiswa`, `prodi`, `email_mahasi
 ('22222222', '2102585', 'APRI ANGGARA YUDHA', 'Ilmu Komputer', 'aprianggarayudha585@upi.edu', 5, 0, 0, 20, 40, 4, 'belum berpartisipasi'),
 ('22222222', '2102665', 'M. CAHYANA BINTANG FAJAR', 'Ilkom', 'dummy@gmail.com', 6, 0, 0, 20, 40, 3.6, 'belum berpartisipasi'),
 ('22222222', '2102671', 'ANDERFA JALU KAWANI', 'Ilkom', 'dummy@gmail.com', 6, 0, 0, 20, 40, 3.6, 'belum berpartisipasi'),
-('33333333', '2102843', 'NAJMA QALBI DWIHARANI', 'Ilmu Komputer', 'najmadwiharani@upi.edu', 6, 0, 0, 20, 40, 4, 'belum berpartisipasi'),
+('33333333', '2102843', 'NAJMA QALBI DWIHARANI', 'Ilmu Komputer', 'najmadwiharani@upi.edu', 6, 20, 2, 0, 40, 4, 'sudah berpartisipasi'),
 ('22222222', '2103207', 'YASMIN FATHANAH ZAKIYYAH', 'Ilkom', 'dummy@gmail.com', 6, 0, 0, 20, 40, 3.6, 'belum berpartisipasi'),
 ('22222222', '2103507', 'INDAH RESTI FAUZI', 'Ilkom', 'dummy@gmail.com', 6, 0, 0, 20, 40, 3.6, 'belum berpartisipasi'),
 ('22222222', '2103703', 'FAUZIYYAH ZAYYAN NUR', 'Ilkom', 'dummy@gmail.com', 6, 0, 0, 20, 40, 3.6, 'belum berpartisipasi'),
@@ -318,13 +326,13 @@ ALTER TABLE `tprogrammbkm`
 -- AUTO_INCREMENT for table `kontrakmatkul`
 --
 ALTER TABLE `kontrakmatkul`
-  MODIFY `id_kontrakmatkul` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_kontrakmatkul` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `kontrakmbkm`
 --
 ALTER TABLE `kontrakmbkm`
-  MODIFY `id_kontrakmbkm` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_kontrakmbkm` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Constraints for dumped tables
